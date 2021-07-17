@@ -1,7 +1,8 @@
 const express = require('express')
+const router = express.Router()
+const Climber = require('../models/climbers.js')
 const app = express()
 const port = 3000
-const router = express.Router()
 
 // Get list of climbers in the db
 router.get('/climbers', (req, res) => {
@@ -10,7 +11,9 @@ router.get('/climbers', (req, res) => {
 
 // Add new climber to the database
 router.post('/climbers', (req, res) => {
-    res.send({type: 'POST'})
+    Climber.create(req.body).then((climber) => {
+        res.send(climber)
+    }).catch(next())
 })
 
 // Update climber in the db
@@ -20,7 +23,7 @@ router.put('/climbers/:id', (req, res) => {
 
 // Delete climber in the db
 router.delete('/climbers/:id', (req, res) => {
-    res.send({type: 'DELETE'})
+    res.send({type: req.params.id})
 })
 
 module.exports = router

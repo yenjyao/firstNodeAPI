@@ -1,1 +1,20 @@
 GET http://127.0.0.1:3000/api/climbers/
+
+###
+
+POST http://127.0.0.1:3000/api/climbers/
+Content-Type: application/json
+
+{
+    "name": "Justin",
+    "age": "25",
+    "isMember": true
+}
+
+###
+
+PUT http://127.0.0.1:3000/api/climbers/1423
+
+###
+
+DELETE http://127.0.0.1:3000/api/climbers/1423
