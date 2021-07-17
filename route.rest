@@ -6,15 +6,33 @@ POST http://127.0.0.1:3000/api/climbers/
 Content-Type: application/json
 
 {
-    "name": "Justin",
-    "age": "25",
-    "isMember": true
+    "name": "James",
+    "age": "12",
+    "isMember": false
+}
+
+### Test geolocation
+
+POST http://127.0.0.1:3000/api/climbers/
+Content-Type: application/json
+
+{
+    "name": "David",
+    "age": "42",
+    "isMember": false,
+    "geometry" : {"type": "point", "coordinates": [-80, 25.791]}
 }
 
 ###
 
-PUT http://127.0.0.1:3000/api/climbers/1423
+PUT http://127.0.0.1:3000/api/climbers/60f2f89e0422d14b6c26b200
+Content-Type: application/json
 
+{
+    "name": "David",
+    "age": "13",
+    "isMember": true
+}
 ###
 
-DELETE http://127.0.0.1:3000/api/climbers/1423
+DELETE http://127.0.0.1:3000/api/climbers/60f2f8082b6a9c4d682f24af
