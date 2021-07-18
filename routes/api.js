@@ -6,17 +6,38 @@ const port = 3000
 
 // Get list of climbers in the db
 router.get('/climbers', async (req, res, next) => {
-    res.send({type: 'GET'})
+    /* Climber.aggregate().near({ 
+        near: {
+            type: 'point',
+            coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+        },
+        distanceField: "dist.calculated", // required
+        maxDistance: 1000000,
+        query: { type: "public" },
+        spherical: true,
+        includeLocs: "dist.location",
+        uniqueDocs: true
+        }) */
+        
+        
+        Climber.aggregate().match({
+
+            id: ObjectId("60f30d60e5529055584eefca")
+
+        }).then(function(climbers){
+            res.send(climbers);
+         })
 })
 
 // Add new climber to the database
 router.post('/climbers', (req, res, next) => {
-    Climber.create(req.body).then((climber) => {
-        res.send(req.body)
-        res.send(`${req.body.name} successfully added`)
-        res.end()
-    }).catch(next) // if error, go to next middleware (error handling)
-})
+    try {
+        Climber.create(req.body)
+    } catch(err) {
+        res.status(400).send({err: err.message})
+    }
+}) // if error, go to next middleware (error handling)
+
 
 // Update climber in the db
 router.put('/climbers/:id', getClimber, async (req, res, next) => {

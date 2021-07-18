@@ -6,22 +6,16 @@ POST http://127.0.0.1:3000/api/climbers/
 Content-Type: application/json
 
 {
-    "name": "James",
-    "age": "12",
-    "isMember": false
+    "name": "Will",
+    "age": "14",
+    "isMember": true,
+    "geometry" : {"type": "point", "coordinates": [53.42, 42.42]}
 }
 
 ### Test geolocation
 
-POST http://127.0.0.1:3000/api/climbers/
-Content-Type: application/json
+GET http://127.0.0.1:3000/api/climbers/?lng=53.42&lat=42
 
-{
-    "name": "David",
-    "age": "42",
-    "isMember": false,
-    "geometry" : {"type": "point", "coordinates": [-80, 25.791]}
-}
 
 ###
 
